@@ -20,7 +20,8 @@ class LauncherTest {
 
     @Test
     fun `should launch the analyzer and retrieve one partition 🥶`() {
-        val tableName = "test"
+        val tableName = "h.schema.test"
+        val schema = "schema"
         val partition = listOf(
             Pair("pkey_0", tableName),
             Pair("pkey_1", 1)
@@ -50,7 +51,8 @@ class LauncherTest {
                     assertThat(t).size().isEqualTo(1)
                     assertEquals(
                         AnalyzeTablePartitionResult(
-                            tableName,
+                            schema,
+                            "test",
                             partition
                         ),
                         t[0]

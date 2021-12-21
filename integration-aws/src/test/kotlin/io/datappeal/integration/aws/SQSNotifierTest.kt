@@ -28,6 +28,7 @@ class SQSNotifierTest {
             sqsNotifier.accept(
                 listOf(
                     AnalyzeTablePartitionResult(
+                        "schema",
                         "test",
                         listOf(
                             Pair("pkey_0", "test"),

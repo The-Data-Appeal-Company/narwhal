@@ -7,7 +7,7 @@ import io.datappeal.narwhal.integration.aws.models.SqsMessage
 import software.amazon.awssdk.services.sqs.SqsClient
 import software.amazon.awssdk.services.sqs.model.SendMessageBatchRequest
 import software.amazon.awssdk.services.sqs.model.SendMessageBatchRequestEntry
-import java.util.*
+import java.util.UUID
 
 class SQSNotifier(
     private val queue: String,
