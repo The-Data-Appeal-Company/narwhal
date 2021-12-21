@@ -1,0 +1,30 @@
+catalog:
+  name: hive_prod
+  uris: thrift://<hive-metastore-uri>:9083
+  warehouse: /tmp
+  access_key: <aws access key>
+  secret_key: <aws secret key>
+
+tables:
+  - name: test_table_00
+    schema: test_schema
+  - name: test_table_01
+    schema: test_schema
+
+rewrite_files:
+  enabled: true
+  policy:
+    type: FILE_SKEW
+    config:
+      target_file_size_bytes: 536870912
+      file_size_skew_threshold: 0.2
+
+  integration:
+    type: SQS
+    config:
+      access_key: <aws access key>
+      secret_key: <aws secret key>
+      region: eu-west-1
+      queue: <sqs queue url>
+      batch_size: 10
+

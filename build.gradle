@@ -1,0 +1,61 @@
+import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.0'
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id "org.jlleitschuh.gradle.ktlint" version "10.2.0"
+}
+
+group 'datappeal.io'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    iceberg_core = '0.12.1'
+    kotlin_stdlib = '1.6.0'
+    mockk = '1.12.1'
+    assertk_jvm = '0.25'
+    junit_jupiter_api = '5.8.1'
+    junit_jupiter_engine = '5.8.1'
+    aws_sqs = '2.15.7'
+    iceberg_hive_metastore = '0.12.0'
+    hadoop_aws = '3.2.0'
+    hadoop_client = '3.2.0'
+    hive_metastore = '2.3.7'
+    clikt = '3.3.0'
+    jackson_module_kotlin = '2.13.0'
+    jackson_dataformat_yaml = '2.13.0'
+    assertk_jvm = '0.25'
+    google_gson = '2.7'
+
+}
+
+dependencies {
+    implementation project(":job")
+}
+
+shadowJar {
+    transform(Log4j2PluginsCacheFileTransformer)
+    zip64 true
+    manifest {
+        attributes 'Main-Class': 'io.datappeal.narwhal.job.JobKt'
+    }
+}
+
+subprojects {
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+    apply plugin: 'java'
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+    repositories {
+        mavenCentral()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

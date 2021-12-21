@@ -1,0 +1,16 @@
+dependencies {
+
+    implementation project(':core')
+
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: "${rootProject.ext.kotlin_stdlib}"
+
+    implementation group: 'software.amazon.awssdk', name: 'sqs', version: "${rootProject.ext.aws_sqs}"
+
+    implementation group: 'com.google.code.gson', name: 'gson', version: "${rootProject.ext.google_gson}"
+
+    testImplementation group: 'io.mockk', name: 'mockk', version: "${rootProject.ext.mockk}"
+    testImplementation group: 'com.willowtreeapps.assertk', name: 'assertk-jvm', version: "${rootProject.ext.assertk_jvm}"
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${rootProject.ext.junit_jupiter_api}"
+
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${rootProject.ext.junit_jupiter_engine}"
+}

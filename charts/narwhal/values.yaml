@@ -1,0 +1,54 @@
+# Default values for narwhal.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: datappeal/narwhal
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: [ ]
+nameOverride: ""
+fullnameOverride: ""
+
+configuration:
+  catalog:
+    name: hive_prod
+    uris: thrift://<hive-metastore-uri>:9083
+    warehouse: /tmp
+    access_key: <aws access key>
+    secret_key: <aws secret key>
+
+  rewrite_files:
+    enabled: true
+    policy:
+      type: FILE_SKEW
+      config:
+        target_file_size_bytes: 536870912
+        file_size_skew_threshold: 0.2
+
+    integration:
+      type: SQS
+      config:
+        region: eu-west-1
+        queue: <sqs queue url>
+        batch_size: 10
+
+cronjob:
+  enabled: false
+  schedule: "5 4 * * *"
+  resources: { }
+  nodeSelector: { }
+  tolerations: [ ]
+  affinity: { }
+
+argo:
+  cronjob:
+    enabled: true
+    schedule: "5 4 * * *"
+    resources: { }
+    nodeSelector: { }
+    tolerations: [ ]
+    affinity: { }

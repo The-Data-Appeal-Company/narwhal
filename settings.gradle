@@ -1,0 +1,5 @@
+rootProject.name = 'narwhal'
+include 'core'
+include 'integration-aws'
+include 'job'
+

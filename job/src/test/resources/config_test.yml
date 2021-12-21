@@ -1,0 +1,26 @@
+tables:
+  - name: "test_table"
+    schema: "test_schema"
+  
+catalog:
+  name: name
+  uris: uris
+  warehouse: warehouse
+  access_key: access_key
+  secret_key: secret_key
+
+rewrite_files:
+  enabled: true
+  policy:
+    type: type
+    config: # Map<String, Any> ...
+      target_file_size_bytes: 1
+      file_size_skew_threshold: 0.2
+
+  integration:
+    type: type
+    config: # Map<String, Any>
+      region: region
+      queue: queue
+      batch_size: 10
+
