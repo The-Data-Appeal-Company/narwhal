@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter
 
 class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
 
-    private val datePattern = "YYYY-mm-DD"
+    private val datePattern = "yyyy-MM-dd"
 
     fun analyzeRewriteFiles(table: Table): List<AnalyzedTablePartition> {
         val tablePartitions = listPartitions(table)
