@@ -9,8 +9,14 @@ import org.apache.iceberg.Table
 import org.apache.iceberg.types.Types
 import org.apache.iceberg.util.DateTimeUtil
 import java.nio.ByteBuffer
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
+
+    private val datePattern = "yyyy-MM-dd"
 
     fun analyzeRewriteFiles(table: Table): List<AnalyzedTablePartition> {
         val tablePartitions = listPartitions(table)
@@ -48,13 +54,13 @@ class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
     private fun getValue(schema: Schema, name: String, index: Int, structLike: StructLike): Any? {
         return when (schema.findType(name)) {
             is Types.DateType -> {
-                DateTimeUtil.dateFromDays(structLike.get(index, Any::class.java) as Int)
+                DateTimeUtil.dateFromDays(structLike.get(index, Any::class.java) as Int).toPartition()
             }
             is Types.TimeType -> {
-                DateTimeUtil.timeFromMicros(structLike.get(index, Long::class.java))
+                DateTimeUtil.timeFromMicros(structLike.get(index, Long::class.java)).toPartition()
             }
             is Types.TimestampType -> {
-                DateTimeUtil.timestampFromMicros(structLike.get(index, Long::class.java))
+                DateTimeUtil.timestampFromMicros(structLike.get(index, Long::class.java)).toPartition()
             }
             is Types.BinaryType -> {
                 String(structLike.get(index, ByteBuffer::class.java).array())
@@ -63,5 +69,17 @@ class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
                 structLike.get(index, Any::class.java)
             }
         }
+    }
+
+    private fun LocalDate.toPartition(): String {
+        return this.format(DateTimeFormatter.ofPattern(datePattern))
+    }
+
+    private fun LocalTime.toPartition(): String {
+        return this.format(DateTimeFormatter.ofPattern(datePattern))
+    }
+
+    private fun LocalDateTime.toPartition(): String {
+        return this.format(DateTimeFormatter.ofPattern(datePattern))
     }
 }
