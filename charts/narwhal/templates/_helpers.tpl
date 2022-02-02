@@ -53,3 +53,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- define "narwhal.configmap.config" -}}
 {{ .Chart.Name }}-conf
 {{- end }}
+
+{{- define "narwhal.cronwf.name" -}}
+{{ .Chart.Name }}
+{{- end }}

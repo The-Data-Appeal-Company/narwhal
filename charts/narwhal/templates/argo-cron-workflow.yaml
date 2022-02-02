@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
-  name: test-cron-wf
+  name:  {{ include "narwhal.cronwf.name" . }}
 spec:
   schedule: {{.Values.argo.cronjob.schedule}}
   concurrencyPolicy: "Forbid"
