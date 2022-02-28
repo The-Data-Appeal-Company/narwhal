@@ -3,6 +3,16 @@ entries:
   narwhal:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2022-02-28T12:55:02.172381449Z"
+    description: Narwhal Helm chart for Kubernetes
+    digest: bf4278844b4449ebf68ff52a836412f0fa2fd5276874e5c938be6798a412f4f8
+    name: narwhal
+    type: application
+    urls:
+    - https://github.com/The-Data-Appeal-Company/narwhal/releases/download/narwhal-0.0.7/narwhal-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2022-02-28T11:08:12.149580162Z"
     description: Narwhal Helm chart for Kubernetes
     digest: f70726a4aa38dbe904d23e5307967b46416570903d0711804dbb73cb79224c5b
