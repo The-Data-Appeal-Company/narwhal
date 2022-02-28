@@ -18,12 +18,27 @@ class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
 
     private val datePattern = "yyyy-MM-dd"
 
-    fun analyzeRewriteFiles(table: Table): List<AnalyzedTablePartition> {
+    fun analyzeRewriteFiles(table: Table, params: Map<String, String>?): List<AnalyzedTablePartition> {
         val tablePartitions = listPartitions(table)
         return tablePartitions
             .map { AnalyzedTablePartition(table, it.key, it.value) }
             .filter { rewritePartitionPolicy.rewrite(it) }
+            .filter { tablePropertiesFilter(it, params) }
     }
+
+    private fun tablePropertiesFilter(partition: AnalyzedTablePartition, params: Map<String, String>?): Boolean {
+        if (params.isNullOrEmpty()){
+            return true
+        }
+
+        val fileCountThreshold = params["file_count_threshold"]
+        if (!fileCountThreshold.isNullOrEmpty()) {
+            return fileCountThreshold.toInt() < partition.files.size
+        }
+
+        return true
+    }
+
 
     private fun listPartitions(table: Table): Map<List<Pair<String, Any?>>, List<DataFile>> {
         val planFiles = table.newScan()

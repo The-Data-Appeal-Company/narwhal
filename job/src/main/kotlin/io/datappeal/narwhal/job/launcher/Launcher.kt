@@ -15,7 +15,8 @@ class Launcher(
     fun launch(tables: List<TargetTable>) {
         for (table in tables) {
             val analyzeRewriteFiles = this.analyzer.analyzeRewriteFiles(
-                table = this.catalog.loadTable(TableIdentifier.of(table.schema, table.name))
+                table = this.catalog.loadTable(TableIdentifier.of(table.schema, table.name)),
+                params = table.params
             )
             this.integration.accept(
                 analyzeRewriteFiles

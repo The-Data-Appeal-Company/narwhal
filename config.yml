@@ -8,6 +8,9 @@ catalog:
 tables:
   - name: test_table_00
     schema: test_schema
+    params:
+      file_count_threshold: 100
+
   - name: test_table_01
     schema: test_schema
 

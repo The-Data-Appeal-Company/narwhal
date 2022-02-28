@@ -34,6 +34,7 @@ class ConfigReaderTest {
                 TargetTable(
                     name = "test_table",
                     schema = "test_schema",
+                    params = emptyMap()
                 )
             )
         )

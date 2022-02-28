@@ -61,6 +61,6 @@ class LauncherTest {
             }
         )
 
-        launcher.launch(listOf(TargetTable(schema = "", name = tableName)))
+        launcher.launch(listOf(TargetTable(schema = "", name = tableName, params = emptyMap())))
     }
 }
