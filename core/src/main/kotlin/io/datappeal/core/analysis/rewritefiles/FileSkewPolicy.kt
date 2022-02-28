@@ -10,7 +10,7 @@ class FileSkewPolicy : RewritePartitionPolicy {
 
 
         val table = partition.table.properties().getOrDefault("write.target-file-size-bytes", "536870912").toLong()
-        val tableTargetFileSizeBytes : Long = (params.getOrDefault("target_file_size_bytes", table) as Int).toLong()
+        val tableTargetFileSizeBytes : Long = (params.getOrDefault("target_file_size_bytes", table) as Number).toLong()
 
 
         val partitionSizeBytes = partition.files.sumOf { it.fileSizeInBytes() }

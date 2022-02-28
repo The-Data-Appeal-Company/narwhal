@@ -18,6 +18,11 @@ class Launcher(
                 table = this.catalog.loadTable(TableIdentifier.of(table.schema, table.name)),
                 params = table.params.orEmpty()
             )
+
+            if (analyzeRewriteFiles.isEmpty()){
+                continue
+            }
+
             this.integration.accept(
                 analyzeRewriteFiles
                     .map {

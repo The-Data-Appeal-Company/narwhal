@@ -34,7 +34,7 @@ class LauncherTest {
         every { hiveCatalog.loadTable(any()) } returns table
 
         val analyzer = mockk<Analyzer>()
-        every { analyzer.analyzeRewriteFiles(any()) } returns mutableListOf(
+        every { analyzer.analyzeRewriteFiles(any(), any()) } returns mutableListOf(
             AnalyzedTablePartition(
                 table,
                 partition,

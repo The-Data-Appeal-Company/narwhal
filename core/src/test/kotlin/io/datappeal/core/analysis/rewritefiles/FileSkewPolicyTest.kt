@@ -14,9 +14,7 @@ class FileSkewPolicyTest {
 
     @Test
     fun `should not rewrite file if the partition size is below target size 😆`() {
-        val policy = FileSkewPolicy(
-            targetFileSizeBytes = 1024 * 1024 * 100 * 5L
-        )
+        val policy = FileSkewPolicy()
 
         val table = mockk<Table>()
         every { table.properties() } returns HashMap<String, String>()
@@ -31,15 +29,13 @@ class FileSkewPolicyTest {
         )
 
         val partition = AnalyzedTablePartition(table, partitionKey, partitionFiles)
-        assertThat(policy.rewrite(partition))
+        assertThat(policy.rewrite(partition, emptyMap()))
             .isFalse()
     }
 
     @Test
     fun `should rewrite files when the target file size for table is below actual file size`() {
-        val policy = FileSkewPolicy(
-            targetFileSizeBytes = 1024 * 1024 * 10L
-        )
+        val policy = FileSkewPolicy()
 
         val table = mockk<Table>()
         every { table.properties() } returns HashMap<String, String>()
@@ -54,7 +50,9 @@ class FileSkewPolicyTest {
         )
 
         val partition = AnalyzedTablePartition(table, partitionKey, partitionFiles)
-        assertThat(policy.rewrite(partition))
+        assertThat(policy.rewrite(partition, mapOf(
+            "target_file_size_bytes" to 100
+        )))
             .isTrue()
     }
 

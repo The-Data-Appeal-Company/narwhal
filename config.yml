@@ -10,6 +10,7 @@ tables:
     schema: test_schema
     params:
       file_count_threshold: 0
+      file_size_skew_threshold: 0.1
       target_file_size_bytes: 536870912
 
   - name: test_table_01
@@ -20,8 +21,8 @@ rewrite_files:
   policy:
     type: FILE_SKEW
     params:
-      file_count_threshold: 0
       target_file_size_bytes: 536870912
+      file_count_threshold: 0
       file_size_skew_threshold: 0.2
 
   integration:
