@@ -7,3 +7,4 @@ data class RewriteFilesConfig(
     val policy: RewriteFilePolicyConfig,
     val integration: IntegrationConfig
 )
+

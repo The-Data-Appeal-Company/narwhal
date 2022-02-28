@@ -8,6 +8,7 @@ import io.datappeal.narwhal.job.factory.CatalogFactory
 import io.datappeal.narwhal.job.factory.IntegrationFactory
 import io.datappeal.narwhal.job.factory.PolicyFactory
 import io.datappeal.narwhal.job.launcher.Launcher
+import io.datappeal.narwhal.job.models.TargetTable
 import io.datappeal.narwhal.job.models.enumerations.IntegrationEnum
 import io.datappeal.narwhal.job.models.enumerations.PolicyEnum
 
@@ -20,19 +21,22 @@ class JobCmd : CliktCommand() {
 
         val rewritePartitionPolicy = PolicyFactory.getPolicy(
             PolicyEnum.valueOf(jobConfig.rewrite_files.policy.type),
-            jobConfig.rewrite_files.policy.config
         )
 
         val integration = IntegrationFactory.getPolicy(
             IntegrationEnum.valueOf(jobConfig.rewrite_files.integration.type),
-            jobConfig.rewrite_files.integration.config
+            jobConfig.rewrite_files.integration.params
         )
 
-        val analyzer = Analyzer(rewritePartitionPolicy)
+        val tablesWithConfig = jobConfig.tables.map {
+            TargetTable(it.name, it.schema, jobConfig.rewrite_files.policy.params + it.params.orEmpty())
+        }
+
+    val analyzer = Analyzer(rewritePartitionPolicy)
         Launcher(
             catalog = catalog,
             analyzer = analyzer,
             integration = integration
-        ).launch(jobConfig.tables)
+        ).launch(tablesWithConfig)
     }
 }

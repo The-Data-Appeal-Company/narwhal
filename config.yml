@@ -9,7 +9,8 @@ tables:
   - name: test_table_00
     schema: test_schema
     params:
-      file_count_threshold: 100
+      file_count_threshold: 0
+      target_file_size_bytes: 536870912
 
   - name: test_table_01
     schema: test_schema
@@ -18,13 +19,14 @@ rewrite_files:
   enabled: true
   policy:
     type: FILE_SKEW
-    config:
+    params:
+      file_count_threshold: 0
       target_file_size_bytes: 536870912
       file_size_skew_threshold: 0.2
 
   integration:
     type: SQS
-    config:
+    params:
       access_key: <aws access key>
       secret_key: <aws secret key>
       region: eu-west-1

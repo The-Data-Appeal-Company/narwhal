@@ -12,28 +12,28 @@ class IntegrationFactory {
     companion object {
         fun getPolicy(
             integrationEnum: IntegrationEnum,
-            integrationConfig: Map<String, Any>
+            integrationParams: Map<String, Any>
         ): RewriteFilesResultConsumer {
             return when (integrationEnum) {
                 IntegrationEnum.SQS -> {
-                    val batchSize = integrationConfig["batch_size"] as Int
+                    val batchSize = integrationParams["batch_size"] as Int
                     if (batchSize <= 0 || batchSize > 10) {
                         throw IllegalArgumentException("Invalid value for batch size: $batchSize. Min: 0, Max: 10")
                     }
 
                     SQSNotifier(
-                        integrationConfig["queue"] as String,
+                        integrationParams["queue"] as String,
                         batchSize,
                         SqsClient.builder()
                             .credentialsProvider(
                                 StaticCredentialsProvider.create(
                                     AwsBasicCredentials.create(
-                                        integrationConfig["access_key"] as String,
-                                        integrationConfig["secret_key"] as String
+                                        integrationParams["access_key"] as String,
+                                        integrationParams["secret_key"] as String
                                     )
                                 )
                             )
-                            .region(Region.of(integrationConfig["region"] as String))
+                            .region(Region.of(integrationParams["region"] as String))
                             .build()
                     )
                 }
