@@ -24,13 +24,11 @@ class FileSkewPolicyTest {
         )
 
         val partitionKey = listOf(
-            Pair("pkey_0", "test"),
-            Pair("pkey_1", 1)
+            Pair("pkey_0", "test"), Pair("pkey_1", 1)
         )
 
         val partition = AnalyzedTablePartition(table, partitionKey, partitionFiles)
-        assertThat(policy.rewrite(partition, emptyMap()))
-            .isFalse()
+        assertThat(policy.rewrite(partition, emptyMap())).isFalse()
     }
 
     @Test
@@ -45,15 +43,18 @@ class FileSkewPolicyTest {
         )
 
         val partitionKey = listOf(
-            Pair("pkey_0", "test"),
-            Pair("pkey_1", 1)
+            Pair("pkey_0", "test"), Pair("pkey_1", 1)
         )
 
         val partition = AnalyzedTablePartition(table, partitionKey, partitionFiles)
-        assertThat(policy.rewrite(partition, mapOf(
-            "target_file_size_bytes" to 100
-        )))
-            .isTrue()
+        assertThat(
+            policy.rewrite(
+                partition,
+                mapOf(
+                    "target_file_size_bytes" to 100
+                )
+            )
+        ).isTrue()
     }
 
     private fun icebergFile(sizeBytes: Long = 1024 * 1024L): DataFile {

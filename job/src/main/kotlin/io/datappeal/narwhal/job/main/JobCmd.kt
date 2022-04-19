@@ -32,11 +32,9 @@ class JobCmd : CliktCommand() {
             TargetTable(it.name, it.schema, jobConfig.rewrite_files.policy.params + it.params.orEmpty())
         }
 
-    val analyzer = Analyzer(rewritePartitionPolicy)
+        val analyzer = Analyzer(rewritePartitionPolicy)
         Launcher(
-            catalog = catalog,
-            analyzer = analyzer,
-            integration = integration
+            catalog = catalog, analyzer = analyzer, integration = integration
         ).launch(tablesWithConfig)
     }
 }

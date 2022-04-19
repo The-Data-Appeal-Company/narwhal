@@ -23,7 +23,6 @@ class Launcher(
                 continue
             }
 
-            println("${table.schema}.${table.name}: ${analyzeRewriteFiles.size} partitions")
             this.integration.accept(
                 analyzeRewriteFiles
                     .map {

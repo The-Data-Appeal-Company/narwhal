@@ -4,7 +4,7 @@ dependencies {
 
     implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: "${rootProject.ext.kotlin_stdlib}"
 
-    implementation group: 'software.amazon.awssdk', name: 'bundle', version: '2.15.40'
+    implementation group: 'software.amazon.awssdk', name: 'bundle', version: "${rootProject.ext.aws}"
 
     implementation group: 'com.google.code.gson', name: 'gson', version: "${rootProject.ext.google_gson}"
 

@@ -61,7 +61,6 @@ class ConfigReaderTest {
             .isInstanceOf(HiveCatalog::class)
     }
 
-
     @Test
     fun `should create correct glue catalog`() {
         val glueCatalog = CatalogFactory.createCatalog(
@@ -76,5 +75,4 @@ class ConfigReaderTest {
         assertThat(glueCatalog)
             .isInstanceOf(GlueCatalog::class)
     }
-
 }

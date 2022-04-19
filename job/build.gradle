@@ -29,8 +29,8 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: "${rootProject.ext.jackson_module_kotlin}"
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: "${rootProject.ext.jackson_dataformat_yaml}"
 
-    implementation group: 'software.amazon.awssdk', name: 'bundle', version: '2.15.40'
-    implementation group: 'software.amazon.awssdk', name: 'url-connection-client', version: '2.15.40'
+    implementation group: 'software.amazon.awssdk', name: 'bundle', version: "${rootProject.ext.aws}"
+    implementation group: 'software.amazon.awssdk', name: 'url-connection-client', version: "${rootProject.ext.aws}"
 
     testImplementation group: 'io.mockk', name: 'mockk', version: "${rootProject.ext.mockk}"
     testImplementation group: 'com.willowtreeapps.assertk', name: 'assertk-jvm', version: "${rootProject.ext.assertk_jvm}"

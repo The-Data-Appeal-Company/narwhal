@@ -5,7 +5,6 @@ import io.datappeal.narwhal.integration.aws.SQSNotifier
 import io.datappeal.narwhal.job.models.enumerations.IntegrationEnum
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
-import software.amazon.awssdk.core.internal.http.loader.DefaultSdkHttpClientBuilder
 import software.amazon.awssdk.http.apache.ApacheHttpClient
 import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.services.sqs.SqsClient
