@@ -4,8 +4,6 @@ dependencies {
 
     implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: "${rootProject.ext.kotlin_stdlib}"
 
-   // implementation group: 'software.amazon.awssdk', name: 'sqs', version: "${rootProject.ext.aws_sqs}"
-
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 
     implementation group: 'org.apache.iceberg', name: 'iceberg-core', version: "${rootProject.ext.iceberg_core}"
