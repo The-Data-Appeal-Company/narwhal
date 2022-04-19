@@ -27,7 +27,7 @@ class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
     }
 
     private fun tablePropertiesFilter(partition: AnalyzedTablePartition, params: Map<String, Any>): Boolean {
-        if (params.isNullOrEmpty()){
+        if (params.isEmpty()){
             return true
         }
 

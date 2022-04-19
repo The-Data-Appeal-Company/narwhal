@@ -15,11 +15,13 @@ fullnameOverride: ""
 
 configuration:
   catalog:
+    type: hive # hive | glue
     name: hive_prod
-    uris: thrift://<hive-metastore-uri>:9083
-    warehouse: /tmp
-    access_key: <aws access key>
-    secret_key: <aws secret key>
+    config:
+      fs.s3a.access.key: ""
+      fs.s3a.secret.key: ""
+      hive.metastore.uris: thrift://<hive-metastore-uri>:9083
+      hive.metastore.warehouse.dir: "file:///tmp"
 
   tables:
     - name: test_table_00

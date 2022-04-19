@@ -15,7 +15,7 @@ repositories {
 }
 
 ext {
-    iceberg_core = '0.12.1'
+    iceberg_core = '0.13.1'
     kotlin_stdlib = '1.6.0'
     mockk = '1.12.1'
     assertk_jvm = '0.25'

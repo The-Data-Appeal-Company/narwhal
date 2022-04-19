@@ -1,25 +1,29 @@
 tables:
   - name: "test_table"
     schema: "test_schema"
-  
+    params: # Map<String, Any> ...
+      target_file_size_bytes: 2
+      file_size_skew_threshold: 1
+
 catalog:
+  type: hive
   name: name
-  uris: uris
-  warehouse: warehouse
-  access_key: access_key
-  secret_key: secret_key
+  config:
+    warehouse: warehouse
+    access_key: access_key
+    secret_key: secret_key
 
 rewrite_files:
   enabled: true
   policy:
     type: type
-    config: # Map<String, Any> ...
+    params: # Map<String, Any> ...
       target_file_size_bytes: 1
       file_size_skew_threshold: 0.2
 
   integration:
     type: type
-    config: # Map<String, Any>
+    params: # Map<String, Any>
       region: region
       queue: queue
       batch_size: 10
