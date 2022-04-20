@@ -21,10 +21,14 @@ spec:
               command:
                 - "/config/config.yml"
               imagePullPolicy: {{.Values.image.pullPolicy}}
-              {{- with .Values.cronjob.resources}}
+              {{- with .Values.extraEnv }}
+              env:
+              {{- toYaml . | nindent 16 }}
+              {{- end }}
               volumeMounts:
                 - mountPath: /config
                   name: config-volume
+          {{- with .Values.cronjob.resources}}
               resources:
           {{- toYaml . | nindent 8}}
           {{end}}

@@ -46,8 +46,11 @@ configuration:
         queue: <sqs queue url>
         batch_size: 10
 
+
+extraEnv: []
+
 cronjob:
-  enabled: false
+  enabled: true
   schedule: "5 4 * * *"
   resources: { }
   nodeSelector: { }
