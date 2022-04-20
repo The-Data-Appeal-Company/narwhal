@@ -16,3 +16,5 @@ jobs:
         run: ./gradlew build -x test -x ktlintCheck
       - name: Run tests
         run: ./gradlew test
+        env:
+          AWS_REGION: eu-west-1

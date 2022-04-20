@@ -4,10 +4,11 @@ dependencies {
 
     implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: "${rootProject.ext.kotlin_stdlib}"
 
-    implementation group: 'software.amazon.awssdk', name: 'sqs', version: "${rootProject.ext.aws_sqs}"
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 
     implementation group: 'org.apache.iceberg', name: 'iceberg-core', version: "${rootProject.ext.iceberg_core}"
     implementation group: 'org.apache.iceberg', name: 'iceberg-hive-metastore', version: "${rootProject.ext.iceberg_hive_metastore}"
+    implementation group: 'org.apache.iceberg', name: 'iceberg-aws', version: "${rootProject.ext.iceberg_core}"
 
     implementation group: 'org.apache.hadoop', name: 'hadoop-aws', version: "${rootProject.ext.hadoop_aws}"
     implementation group: 'org.apache.hadoop', name: 'hadoop-client', version: "${rootProject.ext.hadoop_client}"
@@ -26,6 +27,8 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: "${rootProject.ext.jackson_module_kotlin}"
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: "${rootProject.ext.jackson_dataformat_yaml}"
 
+    implementation group: 'software.amazon.awssdk', name: 'bundle', version: "${rootProject.ext.aws}"
+    implementation group: 'software.amazon.awssdk', name: 'url-connection-client', version: "${rootProject.ext.aws}"
 
     testImplementation group: 'io.mockk', name: 'mockk', version: "${rootProject.ext.mockk}"
     testImplementation group: 'com.willowtreeapps.assertk', name: 'assertk-jvm', version: "${rootProject.ext.assertk_jvm}"

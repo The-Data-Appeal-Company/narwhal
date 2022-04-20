@@ -27,7 +27,7 @@ class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
     }
 
     private fun tablePropertiesFilter(partition: AnalyzedTablePartition, params: Map<String, Any>): Boolean {
-        if (params.isNullOrEmpty()){
+        if (params.isEmpty()) {
             return true
         }
 
@@ -38,7 +38,6 @@ class Analyzer(private val rewritePartitionPolicy: RewritePartitionPolicy) {
 
         return true
     }
-
 
     private fun listPartitions(table: Table): Map<List<Pair<String, Any?>>, List<DataFile>> {
         val planFiles = table.newScan()
