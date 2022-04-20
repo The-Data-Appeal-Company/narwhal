@@ -19,7 +19,7 @@ class Launcher(
                 params = table.params.orEmpty()
             )
 
-            if (analyzeRewriteFiles.isEmpty()){
+            if (analyzeRewriteFiles.isEmpty()) {
                 continue
             }
 

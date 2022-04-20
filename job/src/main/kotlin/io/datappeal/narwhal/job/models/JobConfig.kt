@@ -1,6 +1,6 @@
 package io.datappeal.narwhal.job.models
 
-import io.datappeal.narwhal.job.models.hive.CatalogConfig
+import io.datappeal.narwhal.job.models.catalog.CatalogConfig
 import io.datappeal.narwhal.job.models.rewrite_file.RewriteFilesConfig
 
 data class TargetTable(
